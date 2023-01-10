@@ -18,7 +18,7 @@ kernel = np.ones((3,2),np.uint8)
 mask = cv2.dilate(thresh2,kernel,iterations = 1)
 
 rows,cols=mask.shape
-cv2.imwrite('C:\Users\Mahe\Desktop\mask.jpg',mask)
+cv2.imwrite('./mask.jpg',mask)
 
 # cropping 
 refPt = []
@@ -50,34 +50,34 @@ def click_and_crop(event, x, y, flags, param):
  
 # load the image, clone it, and setup the mouse callback function
 clone = mask.copy()
-cv2.namedWindow("image" ,cv2.WINDOW_NORMAL)
+cv2.namedWindow("image" ,cv2.WINDOW_AUTOSIZE)
 cv2.resizeWindow('image',  rows,cols)
 cv2.setMouseCallback("image", click_and_crop)
  
 # keep looping until the 'q' key is pressed
-while True:
+#while True:
         # display the image and wait for a keypress
-        cv2.namedWindow("image" ,cv2.WINDOW_NORMAL) 
-        cv2.resizeWindow('image',  rows,cols)
-        cv2.imshow("image", mask)
-        key = cv2.waitKey(1) & 0xFF
+        #cv2.namedWindow("image" ,cv2.WINDOW_NORMAL) 
+        #cv2.resizeWindow('image',  rows,cols)
+        #cv2.imshow("image", mask)
+#        key = cv2.waitKey(1) & 0xFF
  
         # if the 'r' key is pressed, reset the cropping region
-        if key == ord("r"):
-                image = clone.copy()
+#        if key == ord("r"):
+#                image = clone.copy()
  
         # if the 'c' key is pressed, break from the loop
-        elif key == ord("c"):
-                break
+#        elif key == ord("c"):
+#                break
  
 # if there are two reference points, then crop the region of interest from the image and display it
 if len(refPt) == 2:
         roi = clone[refPt[0][1]:refPt[1][1], refPt[0][0]:refPt[1][0]]
         cv2.imwrite('roi.jpg',roi)
 
-        cv2.namedWindow("ROI" ,cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('ROI',refPt[0][1]-refPt[1][1], refPt[0][0]-refPt[1][0] )
-        cv2.imshow("ROI", roi)
+        #cv2.namedWindow("ROI" ,cv2.WINDOW_NORMAL)
+        #cv2.resizeWindow('ROI',refPt[0][1]-refPt[1][1], refPt[0][0]-refPt[1][0] )
+        #cv2.imshow("ROI", roi)
        
 cv2.waitKey(0)
 cv2.destroyAllWindows()

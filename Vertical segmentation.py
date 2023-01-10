@@ -7,7 +7,7 @@ import sys
 
 
 
-f=open("C:\Users\Mahe\Desktop\MUSOC.txt","w+")
+f=open("./MUSOC.txt","w+")
 
 for i in range(4):
     img=cv2.imread('part'+str(i)+'.jpg')
@@ -21,8 +21,8 @@ for i in range(4):
     kernel = np.ones((100,10),np.uint8)
     dilation = cv2.dilate(threshold,kernel,iterations = 1)
 
-    cv2.imwrite('C:\Users\Mahe\Desktop\W3 characters\dilatedpart.jpg', dilation)
-    k=cv2.imread('C:\Users\Mahe\Desktop\W3 characters\dilatedpart.jpg')
+    cv2.imwrite('./dilatedpart.jpg', dilation)
+    k=cv2.imread('./dilatedpart.jpg')
 
     #defining the edges
     edges = cv2.Canny(k,50,150,apertureSize = 3)
@@ -44,7 +44,7 @@ for i in range(4):
     #drawing lines
     for i in range(len(sorted_m)):
             cv2.line(img,sorted_m[i][0],sorted_m[i][1],(0,0,255),2)
-    cv2.imwrite('C:\Users\Mahe\Desktop\W3 characters\hough1.jpg',img)
+    cv2.imwrite('./hough1.jpg',img)
 
 
     #defining function distance
@@ -65,7 +65,7 @@ for i in range(4):
             
 
 
-    hough_lines=cv2.imread('C:\Users\Mahe\Desktop\W3 characters\hough1.jpg')
+    hough_lines=cv2.imread('./hough1.jpg')
     p=[]
     sorted_m.append(((cols,rows),(cols,0)))
 
@@ -303,7 +303,7 @@ for i in range(4):
             cv2.line(pxl[i],((pxl[i].shape[1])/2,0),(((pxl[i].shape[1])/2),pxl[i].shape[0]),(0,0,255),2)
             cv2.line(pxl[i],(0,(pxl[i].shape[0])/3),(40,(pxl[i].shape[0])/3),(0,0,255),2)
             cv2.line(pxl[i],(0,(2*(pxl[i].shape[0])/3)),(40,(2*(pxl[i].shape[0])/3)),(0,0,255),2)
-            cv2.imwrite('C:\Users\Mahe\Desktop\W3 characters\character['+str(i)+'].jpg',pxl[i])
+            cv2.imwrite('./character['+str(i)+'].jpg',pxl[i])
 
             #dividing each image into 6 equal rois
             w.append((pxl[i][0:(pxl[i].shape[0])/3,0:(pxl[i].shape[1])/2],     pxl[i][(pxl[i].shape[0])/3:2*((pxl[i].shape[0])/3),0:(pxl[i].shape[1])/2],        pxl[i][2*((pxl[i].shape[0])/3):pxl[i].shape[0],0:(pxl[i].shape[1])/2] ,     pxl[i][0:(pxl[i].shape[0])/3,(pxl[i].shape[1])/2:(pxl[i].shape[1])],     pxl[i][(pxl[i].shape[0])/3:2*((pxl[i].shape[0])/3),(pxl[i].shape[1])/2:(pxl[i].shape[1])] ,      pxl[i][2*(pxl[i].shape[0])/3:pxl[i].shape[0],(pxl[i].shape[1])/2:(pxl[i].shape[1])]))

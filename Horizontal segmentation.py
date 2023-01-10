@@ -27,12 +27,12 @@ for x in range(0, len(lines)):
         for x1,y1,x2,y2 in lines[x]:
                 m.append(((x1,y1),(x2,y2)))
 #print m
-print "length of list m is:",len(m)
+#print "length of list m is:",len(m)
 
 sorted_m=sorted(m, key=lambda x: x[0][1])
 
     
-print "length of list sorted_m is:", len(sorted_m)
+#print "length of list sorted_m is:", len(sorted_m)
 
 sorted_m.insert(0,((0,0),(c,0)))
 #drawing line
